@@ -4,7 +4,34 @@
 #include <Windows.h>
 using namespace std;
 #define LEN(x) sizeof(x) / sizeof(x[0])
-//Å·¼¸ÀïµÃ³ı·¨
+
+
+//æ•°å¡”é—®é¢˜
+int Number_Tower(int data[NT_MAXSIZE][NT_MAXSIZE])
+{
+	int data_maxadd[NT_MAXSIZE][NT_MAXSIZE] = { 0 }, 
+		path[NT_MAXSIZE][NT_MAXSIZE] = { 0 };
+	int i = 0, j = 0;
+	for (j = 0; j <= i; j++)
+	{
+		data_maxadd[NT_MAXSIZE - 1][j] = data[NT_MAXSIZE - 1][j];
+	}
+
+	for (i = NT_MAXSIZE - 2; i >= 0; i--)
+	{
+		for (j = 0; j <= i; j++)
+		{
+			if (data_maxadd[i + 1][j] > data_maxadd[i + 1][j + 1])
+			{
+				data_maxadd[i][j] = data[i][j] + data_maxadd[i + 1][j];
+			}
+		}
+	}
+	return 0;
+}
+
+
+//æ¬§å‡ é‡Œå¾—é™¤æ³•
 int Euclid_Div()
 {
 	int a, b, r;
@@ -16,13 +43,13 @@ int Euclid_Div()
 		a = b;
 		b = r;
 	}
-	cout << "×î´ó¹«Ô¼Êı :" << a << endl;
+	cout << "æœ€å¤§å…¬çº¦æ•° :" << a << endl;
 
 	return 0;
 }
 
 
-//Å·¼¸ÀïµÃ¼õ·¨
+//æ¬§å‡ é‡Œå¾—å‡æ³•
 int  Euclid_Sub()
 {
 	int a, b;
@@ -37,7 +64,7 @@ int  Euclid_Sub()
 		}
 	}
 
-	cout << "×î´ó¹«Ô¼Êı :" << a << endl;
+	cout << "æœ€å¤§å…¬çº¦æ•° :" << a << endl;
 	return 0;
 }
 
@@ -72,11 +99,11 @@ int Partition(int r[], int first, int end)
 
 void QuickSort(int* array, int first, int end)
 {
-	if (first >= end)//±íÊ¾ÒÑ¾­Íê³ÉÒ»¸ö×é
+	if (first >= end)//è¡¨ç¤ºå·²ç»å®Œæˆä¸€ä¸ªç»„
 	{
 		return;
 	}
-	int pivot = Partition(array, first, end);	//ÖáÖµµÄÎ»ÖÃ
+	int pivot = Partition(array, first, end);	//è½´å€¼çš„ä½ç½®
 	QuickSort(array, first, pivot - 1);
 	QuickSort(array, pivot + 1, end);
 }
@@ -101,9 +128,9 @@ int Select_Difference(int* array, int n)
 //////////////////////////////////////////
 //int n = 5;
 //int array[5] = { 2,6,1,6,8 };
-////cout << "ÊäÈëÒª´´½¨µÄÊı×é³¤¶È:";
+////cout << "è¾“å…¥è¦åˆ›å»ºçš„æ•°ç»„é•¿åº¦:";
 ////cin >> n;
-//////·ÖÅä¶¯Ì¬Ò»Î¬Êı×é 
+//////åˆ†é…åŠ¨æ€ä¸€ç»´æ•°ç»„ 
 ////int *array = new int[n];
 //
 ////for (int i = 0; i < n; i++)
@@ -111,12 +138,12 @@ int Select_Difference(int* array, int n)
 //
 //QuickSort(array, 0, LEN(array) - 1);
 //
-//cout << "¸ÃÊı×éÎª:";
+//cout << "è¯¥æ•°ç»„ä¸º:";
 //for (int i = 0; i < n; i++)
 //	cout << array[i] << " ";
-//cout << endl << "½Ó½üÊıÎª: " << Select_Difference(array, LEN(array));
+//cout << endl << "æ¥è¿‘æ•°ä¸º: " << Select_Difference(array, LEN(array));
 //
-////ÊÍ·ÅarrÊı×é 
+////é‡Šæ”¾arræ•°ç»„ 
 ////delete[] array;
 //////////////////////////////////////////////
 */
